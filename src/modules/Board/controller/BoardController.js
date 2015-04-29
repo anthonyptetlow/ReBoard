@@ -1,22 +1,22 @@
 angular.module('RedmineBoard').controller('BoardController', [
 	'$http',
-	'$filter',
-	function ($http, $filter) {
+	'$state',
+	'$stateParams',
+	function ($http, $state, $stateParams) {
 		var Board = this;
-		Board.key = localStorage.getItem('apiKey');
+		Board.userId = $stateParams.userId;
 
-
-
-		function filterToDo (issue) {
-			return !(filterInProgress(issue) || filterAwaiting(issue));
-		}
 
 		function filterInProgress(issue) {
 			return issue.status.name === 'In Progress';
 		}
 
 		function filterAwaiting(issue) {
-			return issue.status.name === "Awaiting user response";
+			return issue.status.name === 'Awaiting user response';
+		}
+
+		function filterToDo (issue) {
+			return !(filterInProgress(issue) || filterAwaiting(issue));
 		}
 
 		Board.columns = [
@@ -34,17 +34,20 @@ angular.module('RedmineBoard').controller('BoardController', [
 			}
 		];
 
-		$http.get('/api/issues?key=' + Board.key + '&user=130').success(function (data) {
+		function getIssues () {
+			$http.get('/api/issues?user=' + Board.userId).success(function (data) {
 
-			Board.issues = data.issues;
-			console.log(data.issues);
+				Board.issues = data.issues;
 
-		}).error(function(){
-			Board.errorMessage = 'Unable to Load Issues';
-		});
+			}).error(function(){
+				Board.errorMessage = 'Unable to Load Issues';
+			});
+		}
 
 		Board.getName = function(issue) {
 			return issue.priority.id;
 		};
+
+		getIssues();
 	}
 ]);

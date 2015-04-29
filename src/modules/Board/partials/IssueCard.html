@@ -1,9 +1,8 @@
 <div class="card" data-ng-class="Issue.classes">
-	<span data-ng-bind="issue.priority.id"></span>
-	-
-	<span data-ng-bind="issue.status.name"></span>
-	-
 	<span data-ng-bind="issue.subject"></span>
+	<a data-ng-href="http://redmine.carnyx.com/issues/{{issue.id}}" target="_blank">
+		<i class="fa fa-arrow-circle-right pull-right"></i>
+	</a>
 </div>
 <!--
 // [Log] [ (app.js, line 26)

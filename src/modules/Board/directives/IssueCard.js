@@ -6,6 +6,7 @@ angular.module('RedmineBoard').directive('issueCard', [
 			}, // {} = isolate, true = child, false/undefined = no change
 			controller: function($scope) {//, $element, $attrs, $transclude) {
 				var Issue = this;
+
 				function getPriorityClass(priorityNo) {
 					if (priorityNo >= 6) {
 						return 'imp-priority';

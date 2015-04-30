@@ -19,6 +19,7 @@ angular.module('RedmineBoard').directive('issueCard', [
 				}
 
 				Issue.classes = getPriorityClass($scope.issue.priority.id);
+				// console.log($scope.issue);
 			},
 			controllerAs: 'Issue',
 			// require: 'ngModel', // Array = multiple requires, ? = optional, ^ = check parent elements

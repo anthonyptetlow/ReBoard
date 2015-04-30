@@ -1,17 +1,33 @@
-<div class="card" data-ng-class="Issue.classes">
-	<a data-ng-href="http://redmine.carnyx.com/issues/{{issue.id}}" target="_blank">
-		<i class="fa fa-arrow-circle-right pull-right"></i>
-	</a>
-	<div class="row">
-		<div class="col-sm-7">
-			<span data-ng-bind="'#'+issue.id"></span>
-			<span data-ng-bind="issue.subject"></span><br>
+<div class="card">
+    <accordion-group>
+        <accordion-heading>
+				<div class="row">
+					<div class="col-sm-7">
+						<i class="fa fa-circle" data-ng-class="Issue.classes"></i>
+
+						<span data-ng-bind="Issue.id"></span>
+
+						<span data-ng-bind="Issue.subject"></span>
+					</div>
+
+					<div class="col-sm-5">
+						<span data-ng-bind="Issue.project.name"></span>
+					</div>
+				</div>
+
+
+		</accordion-heading>
+
+		<span class="pre" data-ng-bind="Issue.description"></span>
+
+
+		<div class="text-right">
+			<a data-ng-href="http://redmine.carnyx.com/issues/{{Issue.id}}" target="_blank">
+				Open in Redmine <i class="fa fa-arrow-circle-right"></i>
+			</a>
+
+			<div class="clearfix"></div>
 		</div>
 
-		<div class="col-sm-4">
-			<span data-ng-bind="issue.project.name"></span>
-		</div>
-	</div>
-
-	<div class="clearfix"></div>
+    </accordion-group>
 </div>

@@ -2,6 +2,7 @@ angular.module('RedmineBoard').controller('BoardController', [
 	'$http',
 	'$state',
 	'$stateParams',
+	'$scope',
 	function ($http, $state, $stateParams) {
 		var Board = this;
 		Board.userId = $stateParams.userId;
@@ -49,5 +50,9 @@ angular.module('RedmineBoard').controller('BoardController', [
 		};
 
 		getIssues();
+
+		Board.reload = function () {
+			$state.reload();
+		};
 	}
 ]);

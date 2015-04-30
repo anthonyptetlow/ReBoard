@@ -1,25 +1,23 @@
 angular.module('RedmineBoard').directive('issueCard', [
 	function(){
+
+		function getPriorityClass(priorityNo) {
+			if (priorityNo >= 6) {
+				return 'imp-priority';
+			} else if (priorityNo >= 5) {
+				return 'high-priority';
+			} else if (priorityNo === 4) {
+				return 'med-priority';
+			}
+			return 'low-priority';
+		}
+
 		return {
 			scope: {
 				issue: '='
 			}, // {} = isolate, true = child, false/undefined = no change
-			controller: function($scope) {//, $element, $attrs, $transclude) {
-				var Issue = this;
-
-				function getPriorityClass(priorityNo) {
-					if (priorityNo >= 6) {
-						return 'imp-priority';
-					} else if (priorityNo >= 5) {
-						return 'high-priority';
-					} else if (priorityNo === 4) {
-						return 'med-priority';
-					}
-					return 'low-priority';
-				}
-
-				Issue.classes = getPriorityClass($scope.issue.priority.id);
-				// console.log($scope.issue);
+			controller: function() {//, $element, $attrs, $transclude) {
+				// var Issue = this;
 			},
 			controllerAs: 'Issue',
 			// require: 'ngModel', // Array = multiple requires, ? = optional, ^ = check parent elements
@@ -28,7 +26,13 @@ angular.module('RedmineBoard').directive('issueCard', [
 			// replace: true,
 			// transclude: true,
 			// compile: function(tElement, tAttrs, function transclude(function(scope, cloneLinkingFn){ return function linking(scope, elm, attrs){}})),
-			link: function() {}
+			link: function($scope, iElm, iAttrs, controller) {
+
+				for (var attrname in $scope.issue) {
+					controller[attrname] = $scope.issue[attrname];
+				}
+				controller.classes = getPriorityClass(controller.priority.id);
+			}
 		};
 	}
 ]);

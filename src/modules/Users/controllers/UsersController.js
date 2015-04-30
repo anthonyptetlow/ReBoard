@@ -1,25 +1,17 @@
 angular.module('RedmineBoard').controller('UsersController', [
-	'$http',
-	function ($http) {
+	'UserService',
+	function (UserService) {
 		var Users = this;
 
-		function getUsers () {
-			//Users In Dev Group
-			$http.get('/api/users?groupId=7').success(function (data) {
-				Users.list = Users.list.concat(data.users);
-			}).error(function(){
-				Users.errorMessage = 'Unable to Load Issues';
-			});
-			//Users In Dev Manager Group
-			$http.get('/api/users?groupId=16').success(function (data) {
-				Users.list = Users.list.concat(data.users);
-			}).error(function(){
-				Users.errorMessage = 'Unable to Load Issues';
-			});
-		}
 		Users.list = [];
 
-		getUsers();
+		UserService.getUsers(7).then(function (data) {
+			Users.list = Users.list.concat(data.users);
+		});
+
+		UserService.getUsers(16).then(function (data) {
+			Users.list = Users.list.concat(data.users);
+		});
 
 	}
 ]);

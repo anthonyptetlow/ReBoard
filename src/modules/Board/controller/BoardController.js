@@ -1,9 +1,8 @@
 angular.module('RedmineBoard').controller('BoardController', [
-	'$http',
 	'$state',
 	'$stateParams',
-	'$scope',
-	function ($http, $state, $stateParams) {
+	'IssueService',
+	function ($state, $stateParams, IssueService) {
 		var Board = this;
 		Board.userId = $stateParams.userId;
 
@@ -35,24 +34,16 @@ angular.module('RedmineBoard').controller('BoardController', [
 			}
 		];
 
-		function getIssues () {
-			$http.get('/api/issues?user=' + Board.userId).success(function (data) {
-
-				Board.issues = data.issues;
-
-			}).error(function(){
-				Board.errorMessage = 'Unable to Load Issues';
-			});
-		}
-
 		Board.getName = function(issue) {
 			return issue.priority.id;
 		};
 
-		getIssues();
-
 		Board.reload = function () {
 			$state.reload();
 		};
+
+		IssueService.getIssues(Board.userId).then(function (data) {
+			Board.issues = data.issues;
+		});
 	}
 ]);

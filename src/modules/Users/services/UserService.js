@@ -17,8 +17,13 @@ function UserService($http, $q){
 		return deferred.promise;
 	}
 
+	function getDevUsers() {
+		return $q.all([getUsers(7), getUsers(16)]);
+	}
+
 	return {
-		getUsers: getUsers
+		getUsers: getUsers,
+		getDevUsers: getDevUsers
 	};
 }
 

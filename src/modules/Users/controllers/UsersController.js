@@ -5,12 +5,10 @@ angular.module('RedmineBoard').controller('UsersController', [
 
 		Users.list = [];
 
-		UserService.getUsers(7).then(function (data) {
-			Users.list = Users.list.concat(data.users);
-		});
-
-		UserService.getUsers(16).then(function (data) {
-			Users.list = Users.list.concat(data.users);
+		UserService.getDevUsers().then(function (data) {
+			data.forEach(function (userData) {
+				Users.list = Users.list.concat(userData.users);
+			});
 		});
 
 	}

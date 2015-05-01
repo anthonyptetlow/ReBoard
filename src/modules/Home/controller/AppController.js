@@ -1,5 +1,5 @@
 angular.module('RedmineBoard').controller('AppController', [
-	'$state',
-	function ($state) {
+	// '$state',
+	function () { //$state) {
 	}
 ]);

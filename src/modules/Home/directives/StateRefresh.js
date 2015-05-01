@@ -1,13 +1,13 @@
 angular.module('RedmineBoard').directive('stateRefresh', [
 	'$state',
-	'$rootScope',
-	function($state, $rootScope){
+	// '$rootScope',
+	function($state) {//, $rootScope){
 	return {
 		scope: {},
-		controller: function($scope, $element) {
+		controller: function() {//$scope, $element) {
 			var AtateRefresh = this;
 
-			var icon = $element.find('i');
+			// var icon = $element.find('i');
 
 			AtateRefresh.reload = function () {
 				$state.reload();

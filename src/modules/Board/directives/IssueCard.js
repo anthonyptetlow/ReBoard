@@ -1,5 +1,6 @@
 angular.module('RedmineBoard').directive('issueCard', [
-	function(){
+	'$localStorage',
+	function($localStorage){
 
 		function getPriorityClass(priorityNo) {
 			if (priorityNo >= 6) {
@@ -17,7 +18,15 @@ angular.module('RedmineBoard').directive('issueCard', [
 				issue: '='
 			}, // {} = isolate, true = child, false/undefined = no change
 			controller: function() {//, $element, $attrs, $transclude) {
-				// var Issue = this;
+				var Issue = this;
+
+				Issue.openNewIssue = function () {
+					if ($localStorage.issues.indexOf(Issue.id) < 0) {
+						$localStorage.issues.push(Issue.id);
+					}
+					Issue.isNew = false;
+				};
+
 			},
 			controllerAs: 'Issue',
 			// require: 'ngModel', // Array = multiple requires, ? = optional, ^ = check parent elements
@@ -26,12 +35,23 @@ angular.module('RedmineBoard').directive('issueCard', [
 			// replace: true,
 			// transclude: true,
 			// compile: function(tElement, tAttrs, function transclude(function(scope, cloneLinkingFn){ return function linking(scope, elm, attrs){}})),
-			link: function($scope, iElm, iAttrs, controller) {
+			link: function($scope, iElm, iAttrs, Issue) {
 
 				for (var attrname in $scope.issue) {
-					controller[attrname] = $scope.issue[attrname];
+					Issue[attrname] = $scope.issue[attrname];
 				}
-				controller.classes = getPriorityClass(controller.priority.id);
+
+				if (angular.isDefined($localStorage.issues)) {
+					if ($localStorage.issues.indexOf(Issue.id) < 0) {
+						Issue.isNew = true;
+					}
+
+				} else {
+					$localStorage.issues = [];
+					Issue.isNew = true;
+				}
+
+				Issue.classes = getPriorityClass(Issue.priority.id);
 			}
 		};
 	}

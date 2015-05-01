@@ -18,11 +18,12 @@ gulp.task('lib', ['bower'], function () {
 	return gulp.src([__dirname + '/../src/lib/angular/angular.js',
 	 	__dirname + '/../src/lib/angular-ui-router/release/angular-ui-router.js',
 	 	__dirname + '/../src/lib/angular-resource/angular-resource.js',
-	 	__dirname + '/../src/lib/angular-ui-bootstrap-bower/ui-bootstrap-tpls.js'
-	 	])
-		.pipe(concat('angular_all.js'))
-		.pipe(gulp.dest(__dirname + '/../public/js/lib'))
-		.on('error', function (error) {
-	        console.error(String(error));
-	    });
+	 	__dirname + '/../src/lib/angular-ui-bootstrap-bower/ui-bootstrap-tpls.js',
+	 	__dirname + '/../src/lib/ngstorage/ngStorage.js'
+ 	])
+	.pipe(concat('angular_all.js'))
+	.pipe(gulp.dest(__dirname + '/../public/js/lib'))
+	.on('error', function (error) {
+        console.error(String(error));
+    });
 });

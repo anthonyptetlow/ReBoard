@@ -1,6 +1,10 @@
 'use strict';
 
-angular.module('RedmineBoard', ['ui.router', 'ui.bootstrap']).config(function($stateProvider, $urlRouterProvider){
+angular.module('RedmineBoard', [
+	'ui.router',
+	'ui.bootstrap',
+	'ngStorage'
+	]).config(function($stateProvider, $urlRouterProvider){
 	$urlRouterProvider.otherwise('/');
 
 	$stateProvider

@@ -1,7 +1,41 @@
-<div class="lane col-md-4" data-ng-repeat="column in Board.columns">
+<!-- <div class="lane col-md-3" data-ng-repeat="column in Board.columns">
 	<h1><span data-ng-bind="column.name"></span></h1>
 
 	<accordion close-others="false">
 		<div data-ng-repeat="issue in filtered = (Board.issues | filter:column.filterFn | orderBy:Board.getName:true)" data-Issue-card="" data-issue="issue"></div>
 	</accordion>
 </div>
+
+ -->
+
+
+ <div class="lane col-md-4">
+	<h1>To do</h1>
+
+	<accordion close-others="false">
+		<div data-ng-repeat="issue in filtered = (Board.issues | filter:Board.filterToDo | orderBy:Board.getName:true)" data-Issue-card="" data-issue="issue"></div>
+	</accordion>
+</div>
+
+<div class="lane col-md-4">
+	<h1>In Progress</h1>
+
+	<accordion close-others="false">
+		<div data-ng-repeat="issue in filtered = (Board.issues | filter:Board.filterInProgress | orderBy:Board.getName:true)" data-Issue-card="" data-issue="issue"></div>
+	</accordion>
+</div>
+
+<div class="lane col-md-4">
+	<h1>Awaiting User Response</h1>
+
+	<accordion close-others="false">
+		<div data-ng-repeat="issue in filtered = (Board.issues | filter:Board.filterAwaiting | orderBy:Board.getName:true)" data-Issue-card="" data-issue="issue"></div>
+	</accordion>
+
+	<h1>Testing</h1>
+
+	<accordion close-others="false">
+		<div data-ng-repeat="issue in filtered = (Board.issues | filter:Board.filterTesting | orderBy:Board.getName:true)" data-Issue-card="" data-issue="issue"></div>
+	</accordion>
+</div>
+

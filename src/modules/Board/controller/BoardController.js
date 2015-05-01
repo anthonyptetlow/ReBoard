@@ -6,33 +6,40 @@ angular.module('RedmineBoard').controller('BoardController', [
 		var Board = this;
 		Board.userId = $stateParams.userId;
 
-
-		function filterInProgress(issue) {
-			return issue.status.name === 'In Progress';
-		}
-
-		function filterAwaiting(issue) {
+		Board.filterAwaiting = function filterAwaiting(issue) {
 			return issue.status.name === 'Awaiting user response';
-		}
+		};
 
-		function filterToDo (issue) {
-			return !(filterInProgress(issue) || filterAwaiting(issue));
-		}
+		Board.filterToDo = function filterToDo (issue) {
+			return issue.status.name === 'New';
+		};
 
-		Board.columns = [
-			{
-				name: 'Todo',
-				filterFn: filterToDo
-			},
-			{
-				name: 'In Progress',
-				filterFn: filterInProgress
-			},
-			{
-				name: 'Awaiting User Response',
-				filterFn: filterAwaiting
-			}
-		];
+		Board.filterTesting = function filterTesting (issue) {
+			return issue.status.name === 'Testing';
+		};
+
+		Board.filterInProgress = function filterInProgress(issue) {
+			return !(Board.filterToDo(issue) || Board.filterAwaiting(issue) || Board.filterTesting(issue));
+		};
+
+		// Board.columns = [
+		// 	{
+		// 		name: 'Todo',
+		// 		filterFn: filterToDo
+		// 	},
+		// 	{
+		// 		name: 'Awaiting User Response',
+		// 		filterFn: filterAwaiting
+		// 	},
+		// 	{
+		// 		name: 'In Progress',
+		// 		filterFn: filterInProgress
+		// 	},
+		// 	{
+		// 		name: 'Testing',
+		// 		filterFn: filterTesting
+		// 	}
+		// ];
 
 		Board.getName = function(issue) {
 			return issue.priority.id;

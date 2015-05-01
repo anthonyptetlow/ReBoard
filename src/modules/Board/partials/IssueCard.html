@@ -18,15 +18,18 @@
 
 		</accordion-heading>
 
-		<span class="pre" data-ng-bind="Issue.description"></span>
 
+		<div>
+			<span class="pre" data-ng-bind="Issue.description"></span>
+		</div>
+		<hr>
 
-		<div class="text-right">
-			<a data-ng-href="http://redmine.carnyx.com/issues/{{Issue.id}}" target="_blank">
+		<div>
+			Added by: <span data-ng-bind="Issue.author.name"></span>
+
+			<a class="pull-right" data-ng-href="http://redmine.carnyx.com/issues/{{Issue.id}}" target="_blank">
 				Open in Redmine <i class="fa fa-arrow-circle-right"></i>
 			</a>
-
-			<div class="clearfix"></div>
 		</div>
 
     </accordion-group>

@@ -18,7 +18,13 @@ function UserService($http, $q){
 	}
 
 	function getDevUsers() {
-		return $q.all([getUsers(7), getUsers(16)]);
+		return $q.all([getUsers(7), getUsers(16)]).then(function (data) {
+			var users = [];
+			data.forEach(function (userData) {
+				users = users.concat(userData.users);
+			});
+			return users;
+		});
 	}
 
 	return {

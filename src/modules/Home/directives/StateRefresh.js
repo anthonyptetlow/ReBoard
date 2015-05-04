@@ -14,11 +14,10 @@ angular.module('RedmineBoard').directive('stateRefresh', [
 				var start = new Date();
 				StateService.reloadData(function () {
 					var timeTaken = new Date() - start;
-					console.log(timeTaken);
-					if (500 - timeTaken > 0) {
+					if (1000 - timeTaken > 0) {
 						$timeout(function () {
 							icon.removeClass('fa-spin');
-						}, 500 - timeTaken);
+						}, 1000 - timeTaken);
 					} else {
 							icon.removeClass('fa-spin');
 					}

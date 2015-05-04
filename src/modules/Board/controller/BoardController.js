@@ -3,51 +3,30 @@ angular.module('RedmineBoard').controller('BoardController', [
 	'$stateParams',
 	'IssueService',
 	'StateService',
-	function ($state, $stateParams, IssueService, StateService) {
+	'IssueList',
+	function ($state, $stateParams, IssueService, StateService, IssueList) {
 		var Board = this;
 		Board.userId = $stateParams.userId;
+		Board.issues = IssueList.issues;
 
-		Board.filterAwaiting = function filterAwaiting(issue) {
+		Board.filterAwaiting = function(issue) {
 			return issue.status.name === 'Awaiting user response';
 		};
 
-		Board.filterToDo = function filterToDo (issue) {
+		Board.filterToDo = function(issue) {
 			return issue.status.name === 'New';
 		};
 
-		Board.filterTesting = function filterTesting (issue) {
+		Board.filterTesting = function(issue) {
 			return issue.status.name === 'Testing';
 		};
 
-		Board.filterInProgress = function filterInProgress(issue) {
+		Board.filterInProgress = function(issue) {
 			return !(Board.filterToDo(issue) || Board.filterAwaiting(issue) || Board.filterTesting(issue));
 		};
 
-		// Board.columns = [
-		// 	{
-		// 		name: 'Todo',
-		// 		filterFn: filterToDo
-		// 	},
-		// 	{
-		// 		name: 'Awaiting User Response',
-		// 		filterFn: filterAwaiting
-		// 	},
-		// 	{
-		// 		name: 'In Progress',
-		// 		filterFn: filterInProgress
-		// 	},
-		// 	{
-		// 		name: 'Testing',
-		// 		filterFn: filterTesting
-		// 	}
-		// ];
-
 		Board.getName = function(issue) {
 			return issue.priority.id;
-		};
-
-		Board.reload = function () {
-			$state.reload();
 		};
 
 		function loadIssues (cb) {
@@ -60,7 +39,5 @@ angular.module('RedmineBoard').controller('BoardController', [
 		}
 
 		StateService.setReloadDataFunction(loadIssues);
-
-		loadIssues();
 	}
 ]);

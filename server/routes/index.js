@@ -36,7 +36,7 @@ router.get('/users', function (req, res) {
     var user = req.query.user,
         groupId = req.query.groupId,
         path = '/users.json?key=' + key + '&limit=100'
-        
+
     if (groupId) {
         path += '&group_id=' + groupId;
     }

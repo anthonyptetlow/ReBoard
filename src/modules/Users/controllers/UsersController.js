@@ -1,15 +1,18 @@
 angular.module('RedmineBoard').controller('UsersController', [
 	'UserService',
-	function (UserService) {
+	'StateService',
+	'UserList',
+	function (UserService, StateService, UserList) {
 		var Users = this;
+		Users.list = UserList;
 
-		Users.list = [];
-
-		UserService.getDevUsers().then(function (data) {
-			data.forEach(function (userData) {
-				Users.list = Users.list.concat(userData.users);
+		function refreshUserData(cb) {
+			UserService.getDevUsers().then(function (userList) {
+				Users.list = userList;
+				cb();
 			});
-		});
+		}
 
+		StateService.setReloadDataFunction(refreshUserData);
 	}
 ]);

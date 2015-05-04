@@ -2,7 +2,7 @@
   "name": "RedmineBoard",
   "version": "0.0.1",
   "scripts": {
-    "start": "node server"
+    "start": "node server",
     "postinstall": "node node_modules/.bin/bower install; node node_modules/.bin/gulp buildOnce"
   },
   "dependencies": {

@@ -2,7 +2,8 @@ angular.module('RedmineBoard').controller('BoardController', [
 	'$state',
 	'$stateParams',
 	'IssueService',
-	function ($state, $stateParams, IssueService) {
+	'StateService',
+	function ($state, $stateParams, IssueService, StateService) {
 		var Board = this;
 		Board.userId = $stateParams.userId;
 
@@ -49,8 +50,17 @@ angular.module('RedmineBoard').controller('BoardController', [
 			$state.reload();
 		};
 
-		IssueService.getIssues(Board.userId).then(function (data) {
-			Board.issues = data.issues;
-		});
+		function loadIssues (cb) {
+			IssueService.getIssues(Board.userId).then(function (data) {
+				Board.issues = data.issues;
+				if(cb) {
+					cb();
+				}
+			});
+		}
+
+		StateService.setReloadDataFunction(loadIssues);
+
+		loadIssues();
 	}
 ]);

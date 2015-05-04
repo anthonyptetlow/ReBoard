@@ -1,17 +1,28 @@
 angular.module('RedmineBoard').directive('stateRefresh', [
-	'$state',
-	// '$rootScope',
-	function($state) {//, $rootScope){
+	'$timeout',
+	'StateService',
+	function($timeout, StateService) {//, $rootScope){
 	return {
 		scope: {},
-		controller: function() {//$scope, $element) {
+		controller: function($scope, $element) {
 			var AtateRefresh = this;
 
-			// var icon = $element.find('i');
+			var icon = $element.find('i');
 
 			AtateRefresh.reload = function () {
-				$state.reload();
-				// icon.addClass('fa-spin');
+				icon.addClass('fa-spin');
+				var start = new Date();
+				StateService.reloadData(function () {
+					var timeTaken = new Date() - start;
+					console.log(timeTaken);
+					if (500 - timeTaken > 0) {
+						$timeout(function () {
+							icon.removeClass('fa-spin');
+						}, 500 - timeTaken);
+					} else {
+							icon.removeClass('fa-spin');
+					}
+				});
 			};
 		},
 		controllerAs: 'Refresh',

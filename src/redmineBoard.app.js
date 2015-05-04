@@ -10,8 +10,8 @@ angular.module('RedmineBoard', [
 	$stateProvider
 	.state('app', {
 		abstract: true,
-		templateUrl: './modules/Home/partials/navigation.html',
-		controller: 'AppController as App'
+		templateUrl: './modules/Home/partials/navigation.html'
+		// controller: 'AppController as App'
 	})
 	// .state('signIn', {
 	// 	url: '/',

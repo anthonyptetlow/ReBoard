@@ -1,6 +1,6 @@
 angular.module('RedmineBoard').directive('issueCard', [
-	'$localStorage',
-	function($localStorage){
+	'IssueService',
+	function(IssueService){
 
 		function getPriorityClass(priorityNo) {
 			if (priorityNo >= 6) {
@@ -20,11 +20,8 @@ angular.module('RedmineBoard').directive('issueCard', [
 			controller: function() {//, $element, $attrs, $transclude) {
 				var Issue = this;
 
-				Issue.openNewIssue = function () {
-					if ($localStorage.issues.indexOf(Issue.id) < 0) {
-						$localStorage.issues.push(Issue.id);
-					}
-					Issue.isNew = false;
+				Issue.openIssue = function () {
+					IssueService.markAsRead(Issue);
 				};
 
 			},
@@ -39,16 +36,6 @@ angular.module('RedmineBoard').directive('issueCard', [
 
 				for (var attrname in $scope.issue) {
 					Issue[attrname] = $scope.issue[attrname];
-				}
-
-				if (angular.isDefined($localStorage.issues)) {
-					if ($localStorage.issues.indexOf(Issue.id) < 0) {
-						Issue.isNew = true;
-					}
-
-				} else {
-					$localStorage.issues = [];
-					Issue.isNew = true;
 				}
 
 				Issue.classes = getPriorityClass(Issue.priority.id);

@@ -1,6 +1,7 @@
 'use strict';
 
 angular.module('RedmineBoard', [
+	'ngAnimate',
 	'ui.router',
 	'ui.bootstrap',
 	'ngStorage'

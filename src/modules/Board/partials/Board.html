@@ -1,39 +1,38 @@
 <div>
 	<div class="col-md-4">
-		 <div class="lane">
+		 <div class="lane animate-container">
 			<h1>To do</h1>
 
 			<accordion close-others="false">
-				<div data-ng-repeat="issue in filterToDo = (Board.issues | filter:Board.filterToDo | orderBy:Board.getName:true)" data-Issue-card="" data-issue="issue"></div>
+				<div class="animate-repeat" data-ng-repeat="issue in filterToDo = (Board.issues | filter:Board.filterToDo | orderBy:Board.getName:true)" data-Issue-card="" data-issue="issue"  ng-animate="'animate'"></div>
 			</accordion>
 		 </div>
 	</div>
 
 	<div class="col-md-4">
-		 <div class="lane">
+		 <div class="lane animate-container">
 			<h1>In Progress</h1>
-
 			<accordion close-others="false">
-				<div data-ng-repeat="issue in filterInProgress = (Board.issues | filter:Board.filterInProgress | orderBy:Board.getName:true)" data-Issue-card="" data-issue="issue"></div>
+				<div class="animate-repeat"data-ng-repeat="issue in filterInProgress = (Board.issues | filter:Board.filterInProgress | orderBy:Board.getName:true)" data-Issue-card="" data-issue="issue"></div>
 			</accordion>
 		</div>
 	</div>
 
 	<div class="col-md-4">
-		<div class="lane">
+		<div class="lane animate-container">
 
 			<h1>Awaiting User Response</h1>
 
 			<accordion close-others="false">
-				<div data-ng-repeat="issue in filterAwaiting = (Board.issues | filter:Board.filterAwaiting | orderBy:Board.getName:true)" data-Issue-card="" data-issue="issue"></div>
+				<div class="animate-repeat"data-ng-repeat="issue in filterAwaiting = (Board.issues | filter:Board.filterAwaiting | orderBy:Board.getName:true)" data-Issue-card="" data-issue="issue"></div>
 			</accordion>
 		</div>
-		<div class="lane">
+		<div class="lane animate-container">
 
 			<h1>Testing</h1>
 
 			<accordion close-others="false">
-				<div data-ng-repeat="issue in filterTesting = (Board.issues | filter:Board.filterTesting | orderBy:Board.getName:true)" data-Issue-card="" data-issue="issue"></div>
+				<div class="animate-repeat"data-ng-repeat="issue in filterTesting = (Board.issues | filter:Board.filterTesting | orderBy:Board.getName:true)" data-Issue-card="" data-issue="issue"></div>
 			</accordion>
 		</div>
 	</div>

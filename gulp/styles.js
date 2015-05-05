@@ -5,7 +5,10 @@ var gulp = require('gulp'),
 
 gulp.task('styles', function() {
 	return gulp.src(__dirname + '/../src/less/RedmineBoard.less')
-		.pipe(recess())
+		.pipe(recess({
+			noOverqualifying: false,
+			strictPropertyOrder: true
+		}))
 		.on('error', function (error) {
 	        console.error(String(error));
         })

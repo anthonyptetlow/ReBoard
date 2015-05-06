@@ -1,7 +1,11 @@
-// angular.module('RedmineBoard').controller('AppController', [
-// 	'$rootScope',
-// 	'$state',
-// 	'StateService',
-// 	function ($rootScope, $state, StateService) { //$state)
-// 	}
-// ]);
+angular.module('RedmineBoard').controller('AppController', [
+	'$rootScope',
+	function ($rootScope) { //$state)
+		var App = this;
+
+		$rootScope.$on('$stateChangeSuccess', function() {
+			App.filter = '';
+		});
+
+	}
+]);

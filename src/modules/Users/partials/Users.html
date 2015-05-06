@@ -1,4 +1,4 @@
 <div class="col-md-8 col-md-offset-2 text-center animate-container">
 	<h1>Users</h1>
-	<div class="col-md-3 animate-repeat" data-ng-repeat="user in Users.list | filter:allFilter | orderBy:'+firstname'" data-user-card data-user="user"></div>
+	<div class="col-md-3 animate-repeat" data-ng-repeat="user in Users.list | filter:App.filter | orderBy:'+firstname'" data-user-card data-user="user"></div>
 </div>

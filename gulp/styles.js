@@ -7,7 +7,7 @@ gulp.task('styles', function() {
 	return gulp.src(__dirname + '/../src/less/RedmineBoard.less')
 		.pipe(recess({
 			noOverqualifying: false,
-			strictPropertyOrder: true
+			strictPropertyOrder: false
 		}))
 		.on('error', function (error) {
 	        console.error(String(error));

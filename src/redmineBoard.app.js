@@ -22,6 +22,9 @@ angular.module('RedmineBoard', [
 		resolve: {
 			IssueList: function ($stateParams, IssueService) {
 				return IssueService.getIssues($stateParams.userId);
+			},
+			User: function ($stateParams, UserService) {
+				return UserService.getUser($stateParams.userId);
 			}
 		}
 	}).state('app.users', {

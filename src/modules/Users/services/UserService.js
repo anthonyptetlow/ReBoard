@@ -1,5 +1,15 @@
 function UserService($http, $q){
 
+	function httpGet(path) {
+		var deferred = $q.defer();
+		$http.get(path).success(function (data) {
+			deferred.resolve(data);
+		}).error(function(error){
+			deferred.reject(error);
+		});
+		return deferred.promise;
+	}
+
 	function getUsers(groupId) {
 		var deferred = $q.defer(),
 			path = 'api/users';
@@ -27,9 +37,14 @@ function UserService($http, $q){
 		});
 	}
 
+	function getUser (userId) {
+		return httpGet('api/user/' + userId);
+	}
+
 	return {
 		getUsers: getUsers,
-		getDevUsers: getDevUsers
+		getDevUsers: getDevUsers,
+		getUser: getUser
 	};
 }
 

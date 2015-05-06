@@ -4,10 +4,11 @@ angular.module('RedmineBoard').controller('BoardController', [
 	'IssueService',
 	'StateService',
 	'IssueList',
-	function ($state, $stateParams, IssueService, StateService, IssueList) {
+	'User',
+	function ($state, $stateParams, IssueService, StateService, IssueList, User) {
 		var Board = this;
-		Board.userId = $stateParams.userId;
 		Board.issues = IssueList.issues;
+		Board.user = User.user;
 
 		Board.filterAwaiting = function(issue) {
 			return issue.status.name === 'Awaiting user response';
@@ -30,7 +31,7 @@ angular.module('RedmineBoard').controller('BoardController', [
 		};
 
 		function loadIssues (cb) {
-			IssueService.getIssues(Board.userId).then(function (data) {
+			IssueService.getIssues(Board.user.id).then(function (data) {
 				Board.issues = data.issues;
 				if(cb) {
 					cb();

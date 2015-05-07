@@ -16,6 +16,11 @@ angular.module('RedmineBoard', [
 		templateUrl: './modules/Home/partials/navigation.html',
 		controller: 'AppController as App'
 	})
+	.state('app.signin', {
+		url: '/signin',
+		templateUrl: './modules/Auth/partials/Signin.html',
+		controller: 'AuthController as Auth'
+	})
 	.state('app.board', {
 		url: '/board/:userId',
 		templateUrl: './modules/Board/partials/Board.html',

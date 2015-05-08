@@ -37,6 +37,16 @@ angular.module('RedmineBoard', [
 				return UserService.getDevUsers();
 			}
 		}
+	})
+	.state('app.todo', {
+		url: '/todo',
+		templateUrl: './modules/Todo/partials/Todo.html',
+		controller: 'TodoController as Todo',
+		resolve: {
+			TodoList: function (TodoService) {
+				return TodoService.getTodoList();
+			}
+		}
 	});
 }).run(function ($rootScope) {
 	$rootScope.loaded = false;

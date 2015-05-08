@@ -1,0 +1,17 @@
+<div class="text-center">
+	<h1>Todo List</h1>
+</div>
+
+<div class="col-sm-offset-4 col-sm-6">
+	<div data-ng-repeat="todo in Todo.list | filter:App.filter">
+		<label>
+		    <input type="checkbox" data-ng-model="todo.checked" data-ng-change="Todo.storeChanges()">
+			<span ng-bind="todo.title"></span>
+		</label>
+	</div>
+
+	<form data-ng-submit="Todo.addItem()">
+		<input class="text-center" type="text" data-ng-model="Todo.newTitle" placeholder="Add Item"></input>
+	</form>
+	
+</div>

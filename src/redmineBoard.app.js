@@ -4,7 +4,8 @@ angular.module('RedmineBoard', [
 	'ngAnimate',
 	'ui.router',
 	'ui.bootstrap',
-	'ngStorage'
+	'ngStorage',
+	'ngLodash'
 	]).config(function($stateProvider, $urlRouterProvider) {
 
 

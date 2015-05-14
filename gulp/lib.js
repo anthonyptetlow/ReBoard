@@ -20,7 +20,8 @@ gulp.task('lib', ['bower'], function () {
 	 	__dirname + '/../src/lib/angular-resource/angular-resource.js',
 	 	__dirname + '/../src/lib/angular-ui-bootstrap-bower/ui-bootstrap-tpls.js',
 	 	__dirname + '/../src/lib/angular-animate/angular-animate.js',
-	 	__dirname + '/../src/lib/ngstorage/ngStorage.js'
+	 	__dirname + '/../src/lib/ngstorage/ngStorage.js',
+	 	__dirname + '/../src/lib/ng-lodash/build/ng-lodash.js'
  	])
 	.pipe(concat('angular_all.js'))
 	.pipe(gulp.dest(__dirname + '/../public/js/lib'))

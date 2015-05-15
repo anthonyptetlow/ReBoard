@@ -1,5 +1,8 @@
 <div class="text-center">
-	<h1 data-ng-bind="Board.user.firstname + ' ' + Board.user.lastname"></h1>
+		<h1>
+			<span data-ng-bind="Board.user.firstname + ' ' + Board.user.lastname"></span>
+			<span class="pull-right total" data-ng-bind="Board.issues.length + ' cards left'"></span>
+		</h1>
 </div>
 <div>
 	<div class="col-md-4">

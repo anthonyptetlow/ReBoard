@@ -34,20 +34,31 @@ angular.module('RedmineBoard').controller('BoardController', [
 		function loadIssues (cb) {
 			IssueService.getIssues(Board.user.id).then(function (data) {
 
-			data.issues.forEach(function (issue) {
-				console.log(issue);
-			});
 			//foreach issue:
-				// get the id
-				// check for existing one
-				// if existing then check updated timestamp
-				// if newer then replace element in array
-				// if not found then add new elements
-			// Then Foreach boarded issue
-				// if not in updated issue array remove
+				///If Issue exists, update it else add issue
+				data.issues.forEach(function (issue) {
+					var existingIssueIndex = lodash.findIndex(Board.issues, function (boardIssue) {
+						return boardIssue.id === issue.id;
+					});
 
+					if(existingIssueIndex >= 0) {
+						Board.issues[existingIssueIndex] = issue;
+							console.log('Issue Updated: ', issue.id);
+					} else {
+						Board.issues.push(issue);
+					}
+				});
+				// If issue doesnt exist in new data then remove is from the board.
+				lodash.remove(Board.issues, function (boardIssue) {
+					var existingIssueIndex = lodash.findIndex(data.issues, function (issue) {
+						return boardIssue.id === issue.id;
+					});
+					if(existingIssueIndex < 0) {
+						console.log('Issue Removed: ', boardIssue.id);
+					}
+					return existingIssueIndex < 0;
+				});
 
-				Board.issues = data.issues;
 				if(cb) {
 					cb();
 				}

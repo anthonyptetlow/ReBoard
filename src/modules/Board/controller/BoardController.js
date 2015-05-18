@@ -35,15 +35,17 @@ angular.module('RedmineBoard').controller('BoardController', [
 			IssueService.getIssues(Board.user.id).then(function (data) {
 
 			//foreach issue:
-				///If Issue exists, update it else add issue
+				///If Issue exists, and if it has been updated, update it else add issue
 				data.issues.forEach(function (issue) {
-					var existingIssueIndex = lodash.findIndex(Board.issues, function (boardIssue) {
-						return boardIssue.id === issue.id;
+					var existingIssueIndex = lodash.findIndex(Board.issues, function (boardsIssue) {
+						return boardsIssue.id === issue.id;
 					});
 
-					if(existingIssueIndex >= 0) {
-						Board.issues[existingIssueIndex] = issue;
-							console.log('Issue Updated: ', issue.id);
+					if (existingIssueIndex >= 0) {
+						var boardIssue = Board.issues[existingIssueIndex];
+						if (boardIssue.updated_on !== issue.updated_on) {
+							Board.issues[existingIssueIndex] = issue;
+						}
 					} else {
 						Board.issues.push(issue);
 					}
@@ -53,9 +55,6 @@ angular.module('RedmineBoard').controller('BoardController', [
 					var existingIssueIndex = lodash.findIndex(data.issues, function (issue) {
 						return boardIssue.id === issue.id;
 					});
-					if(existingIssueIndex < 0) {
-						console.log('Issue Removed: ', boardIssue.id);
-					}
 					return existingIssueIndex < 0;
 				});
 

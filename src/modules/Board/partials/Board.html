@@ -1,45 +1,48 @@
-<div class="text-center">
-		<h1>
-			<span data-ng-bind="Board.user.firstname + ' ' + Board.user.lastname"></span>
-			<span class="pull-right total" data-ng-bind="Board.issues.length + ' cards left'"></span>
-		</h1>
-</div>
-<div>
-	<div class="col-md-4">
-		 <div class="lane animate-container">
-			<h1>To do</h1>
-
-			<accordion close-others="false">
-				<div class="animate-repeat" data-ng-repeat="issue in filterToDo = (Board.issues | filter:Board.filterToDo | filter:App.filter | orderBy:Board.getName:true)" data-Issue-card="" data-issue="issue"  ng-animate="'animate'"></div>
-			</accordion>
-		 </div>
+<div style="border-top:5px solid {{Board.user.color}}"></div>
+<div class="board">
+	<div class="text-center">
+			<h1>
+				<span data-ng-bind="Board.user.firstname + ' ' + Board.user.lastname + ' '"></span>
+				<span class="pull-right total" data-ng-bind="Board.issues.length + ' cards left'"></span>
+			</h1>
 	</div>
+	<div class="row">
+		<div class="col-md-4">
+			 <div class="lane animate-container">
+				<h1>To do</h1>
 
-	<div class="col-md-4">
-		 <div class="lane animate-container">
-			<h1>In Progress</h1>
-			<accordion close-others="false">
-				<div class="animate-repeat"data-ng-repeat="issue in filterInProgress = (Board.issues | filter:Board.filterInProgress | filter:App.filter | orderBy:Board.getName:true)" data-Issue-card="" data-issue="issue"></div>
-			</accordion>
+				<accordion close-others="false">
+					<div class="animate-repeat" data-ng-repeat="issue in filterToDo = (Board.issues | filter:Board.filterToDo | filter:App.filter | orderBy:Board.getName:true)" data-Issue-card="" data-issue="issue"  ng-animate="'animate'"></div>
+				</accordion>
+			 </div>
 		</div>
-	</div>
 
-	<div class="col-md-4">
-		<div class="lane animate-container">
-
-			<h1>Awaiting User Response</h1>
-
-			<accordion close-others="false">
-				<div class="animate-repeat"data-ng-repeat="issue in filterAwaiting = (Board.issues | filter:Board.filterAwaiting | filter:App.filter | orderBy:Board.getName:true)" data-Issue-card="" data-issue="issue"></div>
-			</accordion>
+		<div class="col-md-4">
+			 <div class="lane animate-container">
+				<h1>In Progress</h1>
+				<accordion close-others="false">
+					<div class="animate-repeat"data-ng-repeat="issue in filterInProgress = (Board.issues | filter:Board.filterInProgress | filter:App.filter | orderBy:Board.getName:true)" data-Issue-card="" data-issue="issue"></div>
+				</accordion>
+			</div>
 		</div>
-		<div class="lane animate-container">
 
-			<h1>Testing</h1>
+		<div class="col-md-4">
+			<div class="lane animate-container">
 
-			<accordion close-others="false">
-				<div class="animate-repeat"data-ng-repeat="issue in filterTesting = (Board.issues | filter:Board.filterTesting | filter:App.filter | orderBy:Board.getName:true)" data-Issue-card="" data-issue="issue"></div>
-			</accordion>
+				<h1>Awaiting User Response</h1>
+
+				<accordion close-others="false">
+					<div class="animate-repeat"data-ng-repeat="issue in filterAwaiting = (Board.issues | filter:Board.filterAwaiting | filter:App.filter | orderBy:Board.getName:true)" data-Issue-card="" data-issue="issue"></div>
+				</accordion>
+			</div>
+			<div class="lane animate-container">
+
+				<h1>Testing</h1>
+
+				<accordion close-others="false">
+					<div class="animate-repeat"data-ng-repeat="issue in filterTesting = (Board.issues | filter:Board.filterTesting | filter:App.filter | orderBy:Board.getName:true)" data-Issue-card="" data-issue="issue"></div>
+				</accordion>
+			</div>
 		</div>
 	</div>
 </div>

@@ -13,19 +13,7 @@ angular.module('RedmineBoard').directive('userCard', [
 			// replace: true,
 			// transclude: true,
 			// compile: function(tElement, tAttrs, function transclude(function(scope, cloneLinkingFn){ return function linking(scope, elm, attrs){}})),
-			link: function(scope) {
-
-				function stringToColour(str) {
-					var color;
-					// str to hash
-					for (var i = 0, hash = 0; i < str.length; hash = str.charCodeAt(i++) + ((hash << 5) - hash));
-					// int/hash to hex
-					for (i = 0, color = '#'; i < 3; color += ('00' + ((hash >> i++ * 8) & 0xFF).toString(16)).slice(-2));
-					return color;
-				}
-				// scope.user.color = stringToColour(scope.user.firstname + ' ' + scope.user.lastname);
-				scope.user.color = stringToColour(scope.user.login);
-			}
+			link: function() {}
 		};
 	}
 ]);

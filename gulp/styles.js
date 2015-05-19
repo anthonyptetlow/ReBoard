@@ -4,7 +4,7 @@ var gulp = require('gulp'),
 	recess = require('gulp-recess');
 
 gulp.task('styles', function() {
-	return gulp.src(__dirname + '/../src/less/RedmineBoard.less')
+	return gulp.src(__dirname + '/../src/less/App.less')
 		.pipe(recess({
 			noOverqualifying: false,
 			strictPropertyOrder: false

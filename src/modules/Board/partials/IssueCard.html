@@ -1,4 +1,4 @@
-<div class="accordion" data-ng-class="{new: Issue.isNew}" data-ng-click="Issue.openIssue()">
+<div class="accordion issue-card" data-ng-class="{new: Issue.isNew}" data-ng-click="Issue.openIssue()">
     <accordion-group>
         <accordion-heading>
 				<div class="row">
@@ -16,12 +16,14 @@
 				</div>
 		</accordion-heading>
 
-		<div>
-			<span class="pre" data-ng-bind="Issue.description"></span>
+		<div class="description">
+			<div class="section">
+				<span class="pre" data-ng-bind="Issue.description"></span>
+			</div>
 		</div>
 		<hr>
 
-		<div>
+		<div class="section">
 			Added by: <span data-ng-bind="Issue.author.name"></span>
 
 			<a class="pull-right" data-ng-href="http://redmine.carnyx.com/issues/{{Issue.id}}" target="_blank">

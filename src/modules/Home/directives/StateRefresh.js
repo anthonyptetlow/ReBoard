@@ -4,6 +4,7 @@ angular.module('RedmineBoard').directive('stateRefresh', [
 	function($timeout, StateService) {//, $rootScope){
 	return {
 		scope: {},
+		replace: true,
 		controller: function($scope, $element) {
 			var AtateRefresh = this;
 
@@ -25,6 +26,6 @@ angular.module('RedmineBoard').directive('stateRefresh', [
 			};
 		},
 		controllerAs: 'Refresh',
-		template: '<i class="fa fa-refresh" data-ng-click="Refresh.reload()"></i>'
+		template: '<a class="refresh" data-ng-click="Refresh.reload()"><i class="fa fa-refresh"></i></a>'
 	};
 }]);

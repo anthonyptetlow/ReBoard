@@ -16,7 +16,7 @@ angular.module('RedmineBoard').controller('BoardController', [
 		};
 
 		Board.filterToDo = function(issue) {
-			return issue.status.name === 'New';
+			return issue.status.name === 'New' || issue.status.name === 'Accepted';
 		};
 
 		Board.filterTesting = function(issue) {
